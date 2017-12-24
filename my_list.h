@@ -64,7 +64,8 @@ public:
     using iterator = my_iterator<my_list>;
 
     my_list() = default;
-    my_list( const Alloc& alloc ) : m_Alloc(alloc), m_AllocNode(alloc)
+    my_list( const Alloc& alloc )
+        : m_Alloc(alloc), m_AllocNode(alloc)
     {        
     }
 
