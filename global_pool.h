@@ -19,6 +19,6 @@ public:
         return reinterpret_cast<custum_mm&>( storage );
     }
 private:
-    static std::aligned_storage_t<sizeof( custum_mm )> storage;
+    static std::aligned_storage<sizeof( custum_mm )>::type storage;
     static bool init;
 };
