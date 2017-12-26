@@ -42,7 +42,7 @@ void small_obj_allocator::Deallocate( void* p, size_t num_bytes )
 {
     if( num_bytes > m_max_object_size )
     {
-        delete[] p;
+        ::operator delete( p );
         return;
     }
 
