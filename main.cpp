@@ -1,13 +1,14 @@
 #include <iostream>
 #include <map>
 #include <algorithm>
+#include <iterator>
 
 #include "my_allocator.h"
 #include "my_list.h"
 
 using namespace std;
 
-uint64_t factorial( uint32_t num )
+uint32_t factorial( uint32_t num )
 {
     if( num == 0 )
         return 1;

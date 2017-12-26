@@ -3,6 +3,12 @@
 #include <memory>
 #include <type_traits>
 
+#include "global_pool.h"
+
+/*
+    Аллокатор
+    Для выделения памяти используется global_pool.   
+*/
 template<class T>
 class my_allocator
 {
@@ -48,16 +54,13 @@ public:
 
     T* allocate( std::size_t n )
     {
-        auto p = ::malloc( n * sizeof( T ) );
-        if( p == nullptr )
-            std::bad_alloc();
-
-        return reinterpret_cast<T*>( p );
+        auto p = global_pool::Instance().Allocate( n * sizeof( T ) );
+        return reinterpret_cast<T*>(p);
     }
 
     void deallocate( T* p, std::size_t n )
     {
-        ::free( p );
+        global_pool::Instance().Deallocate( p, n * sizeof( T ) );
     }
 
     template< class U, class... Args >
