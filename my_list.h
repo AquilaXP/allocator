@@ -134,8 +134,8 @@ public:
         node* first = head.next;
         m_Alloc.destroy( &( first->value ) );
         first->next->prev = &head;
-        head.next = last->next;
-        m_AllocNode.deallocate( last, 1 );
+        head.next = first->next;
+        m_AllocNode.deallocate( first, 1 );
         --m_size;
     }
 
