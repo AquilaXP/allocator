@@ -52,9 +52,4 @@ public:
     {
         p->~U();
     }
-
-    size_type max_size() const noexcept
-    {
-        return ( static_cast<size_type>( -1 ) / sizeof( T ) );
-    }
 };
