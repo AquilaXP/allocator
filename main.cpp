@@ -64,7 +64,7 @@ int main()
         std::cout << test_map_my_alloc;
     }
     {
-        /// Мой недолист стандартный allocator
+        /// Мой простой stl совместимый двух связный список и стандартный allocator
         my_list<int> test_my_list;
         int i = 0;
         std::generate_n( std::back_inserter( test_my_list ), 10,
@@ -73,7 +73,7 @@ int main()
         std::cout << test_my_list;
     }
     {
-        /// Мой недолист мой allocator
+        /// Мой простой stl совместимый двух связный список и мой allocator
         my_list<int, my_allocator<int>> test_my_list_my_alloc;
         int i = 0;
         std::generate_n( std::back_inserter( test_my_list_my_alloc ), 10,

@@ -68,7 +68,7 @@ void* fixed_allocator::Allocate()
     assert( m_alloc_chucnk->blocksAvailable != 0 );
 
     auto p = m_alloc_chucnk->Allocate( m_block_size );
-    // ћы воспользовались последним пустым чанком, теперь нету пустых
+    // воспользовались последним пустым чанком, теперь нету пустых
     if( m_alloc_chucnk->blocksAvailable == ( m_num_blocks - 1 ) &&
         m_last_empty_chunk == m_alloc_chucnk )
     {
@@ -97,10 +97,10 @@ void fixed_allocator::Deallocate( void* p )
 
     m_dealloc_chunck->Deallocate( p, m_block_size );
 
-    // „анк пустой?
+    // чанк пустой?
     if( m_dealloc_chunck->blocksAvailable == m_num_blocks )
     {
-        // ≈сли нету пустого чанка, сохран¤ем
+        // Если нету пустого чанка, сохраняем
         if( m_last_empty_chunk == nullptr )
         {
             m_last_empty_chunk = m_dealloc_chunck;
