@@ -220,7 +220,7 @@ private:
         ++m_size;
     }
 
-    node head;// = { T{}, &head, &head };
+    node head;
     size_t m_size = 0;
     typename Alloc::template rebind<node>::other m_AllocNode;
     Alloc m_Alloc;
