@@ -46,36 +46,40 @@ decltype( auto ) operator << ( std::ostream& ostr, my_list<T,A>& l )
 
 int main()
 {
-    /// Ñòàíäàğòíûé map ñòàíäğòíûé allocator
-    std::map<uint32_t, uint32_t> test_map;
-    insert_factorial_to_map( test_map, 10 );
-    std::cout << "Default allocator map\n";
-    std::cout << test_map;
-
-    /// Ñòàíäàğòíûé map ìîé allocator
-    std::map<uint32_t,
-        uint32_t,
-        std::less<uint32_t>,
-        my_allocator<std::pair<const uint32_t, uint32_t>>> test_map_my_alloc;
-    insert_factorial_to_map( test_map_my_alloc, 10 );
-    std::cout << "My allocator map\n";
-    std::cout << test_map_my_alloc;
-
-    /// Ìîé íåäîëèñò ñòàíäàğòíûé allocator
-    my_list<int> test_my_list;
-    int i = 0;
-    std::generate_n( std::back_inserter( test_my_list ), 10, 
-        [&i](){ return i++; } );
-    std::cout << "My list\n";
-    std::cout << test_my_list;
-
-    /// Ìîé íåäîëèñò ìîé allocator
-    my_list<int,my_allocator<int>> test_my_list_my_alloc;
-    i = 0;
-    std::generate_n( std::back_inserter( test_my_list_my_alloc ), 10, 
-        [&i](){ return i++; } );
-    std::cout << "My list my allocator\n";
-    std::cout << test_my_list_my_alloc;
-
+    {
+        /// Ğ¡Ñ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ğ½Ñ‹Ğ¹ map ÑÑ‚Ğ°Ğ½Ğ´Ñ€Ñ‚Ğ½Ñ‹Ğ¹ allocator
+        std::map<uint32_t, uint32_t> test_map;
+        insert_factorial_to_map( test_map, 10 );
+        std::cout << "Default allocator map\n";
+        std::cout << test_map;
+    }
+    {
+        /// Ğ¡Ñ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ğ½Ñ‹Ğ¹ map Ğ¼Ğ¾Ğ¹ allocator
+        std::map<uint32_t,
+            uint32_t,
+            std::less<uint32_t>,
+            my_allocator<std::pair<const uint32_t, uint32_t>>> test_map_my_alloc;
+        insert_factorial_to_map( test_map_my_alloc, 10 );
+        std::cout << "My allocator map\n";
+        std::cout << test_map_my_alloc;
+    }
+    {
+        /// ĞœĞ¾Ğ¹ Ğ½ĞµĞ´Ğ¾Ğ»Ğ¸ÑÑ‚ ÑÑ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ğ½Ñ‹Ğ¹ allocator
+        my_list<int> test_my_list;
+        int i = 0;
+        std::generate_n( std::back_inserter( test_my_list ), 10,
+            [&i](){ return i++; } );
+        std::cout << "My list\n";
+        std::cout << test_my_list;
+    }
+    {
+        /// ĞœĞ¾Ğ¹ Ğ½ĞµĞ´Ğ¾Ğ»Ğ¸ÑÑ‚ Ğ¼Ğ¾Ğ¹ allocator
+        my_list<int, my_allocator<int>> test_my_list_my_alloc;
+        int i = 0;
+        std::generate_n( std::back_inserter( test_my_list_my_alloc ), 10,
+            [&i](){ return i++; } );
+        std::cout << "My list my allocator\n";
+        std::cout << test_my_list_my_alloc;
+    }
     return 0;
 }
