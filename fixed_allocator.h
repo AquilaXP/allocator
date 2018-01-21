@@ -30,5 +30,5 @@ private:
     chuncks m_chuncks;
     chunk* m_alloc_chucnk = nullptr;
     chunk* m_dealloc_chunck = nullptr;
-    chunk* m_last_empty_chunk = nullptr;
+    //chunk* m_last_empty_chunk = nullptr;
 };

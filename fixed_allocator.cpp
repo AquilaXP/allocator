@@ -11,12 +11,12 @@ fixed_allocator::fixed_allocator( fixed_allocator&& rhs )
     m_num_blocks( rhs.m_num_blocks ),
     m_chuncks( std::move( rhs.m_chuncks ) ),
     m_alloc_chucnk( rhs.m_alloc_chucnk ),
-    m_dealloc_chunck( rhs.m_dealloc_chunck ),
-    m_last_empty_chunk( rhs.m_last_empty_chunk )
+    m_dealloc_chunck( rhs.m_dealloc_chunck )//,
+    //m_last_empty_chunk( rhs.m_last_empty_chunk )
 {
     rhs.m_alloc_chucnk = nullptr;
     rhs.m_dealloc_chunck = nullptr;
-    rhs.m_last_empty_chunk = nullptr;
+    //rhs.m_last_empty_chunk = nullptr;
     rhs.m_block_size = 0;
     rhs.m_num_blocks = 0;
 }
@@ -32,8 +32,8 @@ fixed_allocator& fixed_allocator::operator=( fixed_allocator&& rhs )
     rhs.m_alloc_chucnk = nullptr;
     m_dealloc_chunck = rhs.m_dealloc_chunck;
     rhs.m_dealloc_chunck = nullptr;
-    m_last_empty_chunk = rhs.m_last_empty_chunk;
-    rhs.m_last_empty_chunk = nullptr;
+    //m_last_empty_chunk = rhs.m_last_empty_chunk;
+    //rhs.m_last_empty_chunk = nullptr;
 
     return ( *this );
 }
@@ -69,12 +69,12 @@ void* fixed_allocator::Allocate()
 
     auto p = m_alloc_chucnk->Allocate( m_block_size );
     // воспользовались последним пустым чанком, теперь нету пустых
-    if( m_alloc_chucnk->blocksAvailable == ( m_num_blocks - 1 ) &&
+/*    if( m_alloc_chucnk->blocksAvailable == ( m_num_blocks - 1 ) &&
         m_last_empty_chunk == m_alloc_chucnk )
     {
         m_last_empty_chunk = nullptr;
     }
-
+*/
     return p;
 }
 
@@ -101,12 +101,12 @@ void fixed_allocator::Deallocate( void* p )
     if( m_dealloc_chunck->blocksAvailable == m_num_blocks )
     {
         // Если нету пустого чанка, сохраняем
-        if( m_last_empty_chunk == nullptr )
+/*        if( m_last_empty_chunk == nullptr )
         {
             m_last_empty_chunk = m_dealloc_chunck;
             return;
         }
-        else
+        else*/
         {
             auto c = m_chuncks.begin();
             for( ; c != m_chuncks.end(); ++c )
